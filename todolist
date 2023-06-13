@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: top;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #ffffff;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        li.completed {
+            text-decoration: line-through;
+            background-color: #e0e0e0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+        }
+
+        .dark-mode {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="할 일을 입력하세요">
+    <ul id="todo-list"></ul>
+    <button id="darkModeBtn">다크모드</button>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const todoList = document.getElementById('todo-list');
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        let isDarkMode = false;
+
+        taskInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && taskInput.value !== '') {
+                const task = taskInput.value;
+                const halill = document.createElement('li');
+                halill.innerText = task;
+
+                halill.addEventListener('click', function() {
+                    halill.remove();
+                });
+
+                todoList.appendChild(halill);
+                taskInput.value = '';
+            }
+        });
+
+        darkModeBtn.addEventListener('click', function() {
+            isDarkMode = !isDarkMode;
+
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeBtn.innerText = '라이트모드';
+            } else {
+                document.body.classList.remove('dark-mode');
+                darkModeBtn.innerText = '다크모드';
+            }
+        });
+    </script>
+</body>
+</html>
